@@ -1,7 +1,8 @@
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar/navbar"
 import { HeroSection } from "@/components/ui/dynamic-hero"
-import MostOutOfYourMarketing from "@/components/ui/demo"
+import MostOutOfYourMarketing from "@/components/ui/MostOutOfYourMarketing"
+import { WhatMakesYourDifferent } from "@/components/WhatMakesYourDifferent"
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
         buttonText="Yes, I want that!"
       />
       <MostOutOfYourMarketing />
+      <WhatMakesYourDifferent />
       <Footer />
     </>
   )
