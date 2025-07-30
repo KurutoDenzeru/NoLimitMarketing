@@ -206,7 +206,7 @@ const HeroSection = ({
     }, [drawArrow]);
 
     return (
-        <div ref={heroRef} className="bg-background text-foreground flex flex-col h-screen relative overflow-hidden">
+        <div ref={heroRef} className="bg-background text-foreground flex flex-col relative overflow-hidden">
             <div className="max-w-8xl mx-auto w-full flex-grow flex flex-col">
                 <main className="flex-grow flex flex-col items-center justify-center">
                     <div className="mt-12 sm:mt-16 lg:mt-24 flex flex-col items-center">
@@ -220,7 +220,7 @@ const HeroSection = ({
                     <div className="mt-8 flex justify-center">
                         <Button
                             ref={targetRef}
-                            className="py-2 px-6 rounded-xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 border-none focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 cursor-pointer transform hover:scale-105 active:scale-95"
+                            className="py-6 px-12 text-3xl rounded-2xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-extrabold shadow-lg hover:shadow-xl transition-all duration-200 border-none focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 cursor-pointer transform hover:scale-105 active:scale-95"
                         >
                             {buttonText}
                         </Button>
