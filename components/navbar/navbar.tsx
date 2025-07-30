@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Infinity } from "lucide-react"
 import { SidebarProvider, Sidebar, SidebarTrigger } from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
 
 interface NavbarLink {
   label: string
@@ -18,8 +17,8 @@ const NAV_LINKS: NavbarLink[] = [
 function Navbar() {
     return (
         <SidebarProvider>
-            <nav className="w-full border-b border-b-gray-200 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
-                <div className="container mx-auto flex h-16 items-center justify-between px-4">
+            <nav className="w-full bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <div className="mx-auto w-full flex h-16 items-center justify-between px-12 border-b border-b-gray-500">
                     {/* Logo and Brand */}
                     <a href="/" className="flex items-center gap-2 select-none">
                         <Infinity className="size-7 text-primary" />
@@ -31,7 +30,7 @@ function Navbar() {
                             <a
                                 key={link.label}
                                 href={link.href}
-                                className="px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-red-500 hover:bg-accent transition-colors"
+                                className="px-3 py-2 rounded-md text-md font-medium text-muted-foreground hover:text-red-500 hover:bg-accent transition-colors"
                             >
                                 {link.label}
                             </a>
