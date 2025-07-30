@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useRef, useCallback } from 'react';
+import { Button } from "@/components/ui/button"
 
 // Helper to parse 'rgb(r, g, b)' or 'rgba(r, g, b, a)' string to {r, g, b}
 interface RgbColor {
@@ -216,12 +217,12 @@ const HeroSection = ({
                         </p>
                     </div>
                     <div className="mt-8 flex justify-center">
-                        <button
+                        <Button
                             ref={targetRef}
                             className="py-2 px-6 rounded-xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 border-none focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 cursor-pointer transform hover:scale-105 active:scale-95"
                         >
                             {buttonText}
-                        </button>
+                        </Button>
                     </div>
                 </main>
             </div>
