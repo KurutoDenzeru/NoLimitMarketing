@@ -12,13 +12,13 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Barcoda - Barcode Generator",
-    template: "%s | Barcoda",
+    default: "NoLimitMarketing - US",
+    template: "%s | NoLimitMarketing - US",
   },
   description:
     "Create, customize, and download barcodes in multiple formats. Free online barcode generator supporting CODE128, EAN13, UPC, and more.",
   alternates: {
-    canonical: 'https://barcoda.vercel.app',
+    canonical: 'https://nolimitmarketing.vercel.app',
   },
   keywords: [
     "barcode generator",
@@ -39,23 +39,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://barcoda.vercel.app",
-    title: "Barcoda - Barcode Generator",
+    url: "https://nolimitmarketing.vercel.app",
+    title: "NoLimitMarketing - US",
     description:
       "Modern barcode generator that combines sleek design with seamless functionality. Built on Next.js, Tailwind, and Shadcn for effortless customization.",
-    siteName: "Barcoda",
+    siteName: "NoLimitMarketing - US",
     images: [
       {
         url: "/sitemap.webp",
         width: 1200,
         height: 630,
-        alt: "Barcoda - Barcode Generator",
+        alt: "NoLimitMarketing - US",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Barcoda - Barcode Generator",
+    title: "NoLimitMarketing - US",
     description:
       "Modern barcode generator that combines sleek design with seamless functionality. Built on Next.js, Tailwind, and Shadcn for effortless customization.",
     images: ["/OpenGraph.webp"],
