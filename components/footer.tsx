@@ -1,5 +1,5 @@
-import { MailIcon, MapPinIcon, PhoneIcon, FacebookIcon, InstagramIcon, LinkedinIcon } from "lucide-react"
-import { Facebook, Instagram, Linkedin } from "lucide-react"
+import { MailIcon, MapPinIcon, PhoneIcon, } from "lucide-react"
+import { Facebook, Instagram } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface FooterProps {

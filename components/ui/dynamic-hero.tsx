@@ -23,7 +23,7 @@ function parseRgbColor(colorString: string): RgbColor | null {
 }
 const HeroSection = ({
     heading = "Something you really want",
-    tagline = "You can't live without this product. I'm sure of it.",
+    tagline = "You can&apos;t live without this product. I&apos;m sure of it.",
     buttonText = "Get Started",
 }) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -148,16 +148,17 @@ const HeroSection = ({
         if (!canvas || !targetRef.current || !heroRef.current) return;
         ctxRef.current = canvas.getContext("2d");
         const ctx = ctxRef.current;
+        const heroNode = heroRef.current; // capture ref value
 
         const updateCanvasSize = () => {
-            const heroRect = heroRef.current!.getBoundingClientRect();
+            const heroRect = heroNode!.getBoundingClientRect();
             canvas.width = heroRect.width;
             canvas.height = heroRect.height;
         };
 
         function handleMouseMove(e: MouseEvent): void {
-            if (!heroRef.current) return;
-            const heroRect = heroRef.current.getBoundingClientRect();
+            if (!heroNode) return;
+            const heroRect = heroNode.getBoundingClientRect();
             const x = e.clientX - heroRect.left;
             const y = e.clientY - heroRect.top;
             // Only track if inside hero
@@ -178,9 +179,9 @@ const HeroSection = ({
         window.addEventListener("resize", updateCanvasSize);
         updateCanvasSize();
 
-        if (heroRef.current) {
-            heroRef.current.addEventListener("mousemove", handleMouseMove);
-            heroRef.current.addEventListener("mouseleave", handleMouseLeave);
+        if (heroNode) {
+            heroNode.addEventListener("mousemove", handleMouseMove);
+            heroNode.addEventListener("mouseleave", handleMouseLeave);
         }
 
         const animateLoop = () => {
@@ -194,9 +195,9 @@ const HeroSection = ({
 
         return () => {
             window.removeEventListener("resize", updateCanvasSize);
-            if (heroRef.current) {
-                heroRef.current.removeEventListener("mousemove", handleMouseMove);
-                heroRef.current.removeEventListener("mouseleave", handleMouseLeave);
+            if (heroNode) {
+                heroNode.removeEventListener("mousemove", handleMouseMove);
+                heroNode.removeEventListener("mouseleave", handleMouseLeave);
             }
             if (animationFrameIdRef.current) {
                 cancelAnimationFrame(animationFrameIdRef.current);

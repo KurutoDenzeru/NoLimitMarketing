@@ -7,7 +7,7 @@ const features = [
 	{
         title: 'DO EVERYTHING YOURSELF?',
 		icon: Brain,
-        description: 'If you have little to do, it`s not a problem. However, if you`re busy... this is not feasible.',
+        description: 'If you have little to do, it&apos;s not a problem. However, if you&apos;re busy... this is not feasible.',
 	},
 	{
         title: 'HIRE A STAFF?',
@@ -17,7 +17,7 @@ const features = [
 	{
         title: 'LET AN AGENCY HANDLE IT?',
         icon: Building2,
-        description: 'Don`t have a marketing budget of tens of thousands of dollars per month? Well then your account is often managed by the intern of the assistant of the assistant.Not ideal.',
+        description: 'Don&apos;t have a marketing budget of tens of thousands of dollars per month? Well then your account is often managed by the intern of the assistant of the assistant.Not ideal.',
 	}
 ];
 
