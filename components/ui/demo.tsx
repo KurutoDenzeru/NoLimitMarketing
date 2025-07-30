@@ -1,5 +1,5 @@
 'use client';
-import { Brain, Briefcase, Fingerprint, Pencil, Settings2, Sparkles } from 'lucide-react';
+import { Brain, Users, Building2 } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { FeatureCard } from '@/components/ui/grid-feature-cards';
 
@@ -11,17 +11,17 @@ const features = [
 	},
 	{
         title: 'HIRE A STAFF?',
-        icon: Briefcase,
+        icon: Users,
         description: 'Finding good people is difficult,  training them is expensive. Even if you find the perfect person...You still rely on one individual.',
 	},
 	{
         title: 'LET AN AGENCY HANDLE IT?',
-		icon: Fingerprint,
+        icon: Building2,
         description: 'Don`t have a marketing budget of tens of thousands of dollars per month? Well then your account is often managed by the intern of the assistant of the assistant.Not ideal.',
 	}
 ];
 
-export default function DemoOne() {
+export default function MostOutOfYourMarketing() {
 	return (
 		<section className="py-16 md:py-32">
 			<div className="mx-auto w-full max-w-8xl space-y-8 px-4">

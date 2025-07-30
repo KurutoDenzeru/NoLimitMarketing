@@ -1,4 +1,5 @@
 import * as React from "react"
+import Link from "next/link"
 import { Infinity } from "lucide-react"
 import { SidebarProvider, Sidebar, SidebarTrigger } from "@/components/ui/sidebar"
 
@@ -20,20 +21,20 @@ function Navbar() {
             <nav className="w-full bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
                 <div className="mx-auto w-full flex h-16 items-center justify-between px-12 ">
                     {/* Logo and Brand */}
-                    <a href="/" className="flex items-center gap-2 select-none">
+                    <Link href="/" className="flex items-center gap-2 select-none">
                         <Infinity className="size-7 text-primary" />
                         <span className="font-bold text-lg tracking-tight text-primary">No Limit Marketing</span>
-                    </a>
+                    </Link>
                     {/* Desktop Nav Links */}
                     <div className="hidden md:flex items-center gap-2">
                         {NAV_LINKS.map(link => (
-                            <a
+                            <Link
                                 key={link.label}
                                 href={link.href}
                                 className="px-3 py-2 rounded-md text-md font-medium text-muted-foreground hover:text-red-500 hover:bg-accent transition-colors"
                             >
                                 {link.label}
-                            </a>
+                            </Link>
                         ))}
                     </div>
                     {/* Mobile Hamburger */}
@@ -51,13 +52,13 @@ function Navbar() {
                 <Sidebar side="right" variant="floating" collapsible="offcanvas" className="md:hidden">
                     <nav className="flex flex-col gap-2 p-4">
                         {NAV_LINKS.map(link => (
-                            <a
+                            <Link
                                 key={link.label}
                                 href={link.href}
                                 className="px-3 py-2 rounded-md text-base font-medium text-muted-foreground hover:text-red-400 hover:bg-accent transition-colors"
                             >
                                 {link.label}
-                            </a>
+                            </Link>
                         ))}
                     </nav>
                 </Sidebar>

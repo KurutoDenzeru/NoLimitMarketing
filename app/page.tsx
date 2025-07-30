@@ -1,7 +1,7 @@
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar/navbar"
 import { HeroSection } from "@/components/ui/dynamic-hero"
-import DemoOne from "@/components/ui/demo"
+import MostOutOfYourMarketing from "@/components/ui/demo"
 
 export default function HomePage() {
   return (
@@ -14,7 +14,7 @@ export default function HomePage() {
         tagline="Guaranteed!"
         buttonText="Yes, I want that!"
       />
-      <DemoOne />
+      <MostOutOfYourMarketing />
       <Footer />
     </>
   )
