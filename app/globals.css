@@ -120,3 +120,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .max-w-8xl {
+    max-width: 96rem; /* 1536px, one step above 7xl (80rem) */
+  }
+}

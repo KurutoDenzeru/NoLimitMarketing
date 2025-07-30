@@ -18,7 +18,7 @@ function Navbar() {
     return (
         <SidebarProvider>
             <nav className="w-full bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <div className="mx-auto w-full flex h-16 items-center justify-between px-12 border-b border-b-gray-500">
+                <div className="mx-auto w-full flex h-16 items-center justify-between px-12 ">
                     {/* Logo and Brand */}
                     <a href="/" className="flex items-center gap-2 select-none">
                         <Infinity className="size-7 text-primary" />
