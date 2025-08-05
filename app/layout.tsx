@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://barcoda.vercel.app"),
+  metadataBase: new URL("https://nolimitmarketing.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     images: ["/OpenGraph.webp"],
     creator: "@krtclcdy",
   },
-  icons: "/favicon.ico",
+  icons: "/loop.png",
   robots: {
     index: true,
     follow: true,

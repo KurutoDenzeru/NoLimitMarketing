@@ -208,8 +208,8 @@ const HeroSection = ({
     return (
         <div ref={heroRef} className="bg-background text-foreground flex flex-col relative overflow-hidden">
             <div className="max-w-8xl mx-auto w-full flex-grow flex flex-col">
-                <main className="flex-grow flex flex-col items-center justify-center">
-                    <div className="mt-12 sm:mt-16 lg:mt-24 flex flex-col items-center">
+                <main className="flex-grow flex flex-col items-center justify-center my-12 sm:my-16 lg:my-24">
+                    <div className="flex flex-col items-center">
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center px-4">
                             {heading}
                         </h1>
