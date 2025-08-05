@@ -3,6 +3,8 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Button } from "@/components/ui/button"
 import { AnimatedContainer } from '@/components/ui/animated-container';
 import { HeroAnalysisDialog } from "@/components/HeroAnalysisDialog";
+import { Badge } from "@/components/ui/badge";
+import { PhoneCall } from "lucide-react";
 
 // Helper to parse 'rgb(r, g, b)' or 'rgba(r, g, b, a)' string to {r, g, b}
 interface RgbColor {
@@ -227,6 +229,31 @@ const HeroSection = ({
                 </div>
                 <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />
             </div>
+            <AnimatedContainer className="w-full py-10 lg:py-20">
+                <div className="max-w-8xl mx-auto px-4">
+                    <div className="flex flex-col text-center bg-muted rounded-md p-4 lg:p-14 gap-8 items-center">
+                        <div>
+                            <Badge>Get started</Badge>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <h3 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular">
+                                Marketing is important...
+                            </h3>
+                            <p className="text-lg leading-relaxed tracking-tight text-muted-foreground max-w-xl">
+                                However, there are already 101 things on your to-do list
+                                and they are all important!
+                            </p>
+                        </div>
+                        <div className="flex flex-row gap-4">
+                            <a href="tel:+16692499127" tabIndex={0}>
+                                <Button className="gap-4 cursor-pointer" variant="outline">
+                                    Jump on a call <PhoneCall className="w-4 h-4" />
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </AnimatedContainer>
             <HeroAnalysisDialog isOpen={isDialogOpen} onOpenChange={setDialogOpen} />
         </AnimatedContainer>
     );

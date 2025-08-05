@@ -1,7 +1,6 @@
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar/navbar"
 import { HeroSection } from "@/components/ui/dynamic-hero"
-import { CTA } from "@/components/ui/call-to-action"
 import MostOutOfYourMarketing from "@/components/ui/MostOutOfYourMarketing"
 import { WhatMakesYourDifferent } from "@/components/WhatMakesYourDifferent"
 import { WorldMapDemo } from "@/components/EmailSubscription"
@@ -12,13 +11,12 @@ export default function HomePage() {
       <div className="max-w-8xl mx-auto w-full">
         <Navbar />
       </div>
-      <div className="min-h-screen ">
+      <div className="h-screen">
         <HeroSection
           heading="More Growth. More Clients."
           tagline="Guaranteed!"
           buttonText="YES, I WANT THAT!"
         />
-        <CTA />
       </div>
       <MostOutOfYourMarketing />
       <WhatMakesYourDifferent />
