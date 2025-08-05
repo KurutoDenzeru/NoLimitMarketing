@@ -15,7 +15,7 @@ export default function HomePage() {
         <HeroSection
           heading="More Growth. More Clients."
           tagline="Guaranteed!"
-          buttonText="Yes, I want that!"
+          buttonText="YES, I WANT THAT!"
         />
         <CTA />
       </div>

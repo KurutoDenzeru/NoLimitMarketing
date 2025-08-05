@@ -30,7 +30,7 @@ export function FeatureCard({ feature, className, ...props }: FeatureCardProps) 
 			</div>
 			<feature.icon className="text-foreground/75 size-6" strokeWidth={1} aria-hidden />
 			<h3 className="mt-10 text-sm md:text-base">{feature.title}</h3>
-			<p className="text-muted-foreground relative z-20 mt-2 text-xs font-light">{feature.description}</p>
+			<p className="text-muted-foreground relative z-20 mt-2 text-sm font-light">{feature.description}</p>
 		</div>
 	);
 }

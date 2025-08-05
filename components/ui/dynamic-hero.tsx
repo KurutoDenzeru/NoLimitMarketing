@@ -220,7 +220,7 @@ const HeroSection = ({
                     <div className="mt-8 flex justify-center">
                         <Button
                             ref={targetRef}
-                            className="py-6 px-12 text-3xl rounded-2xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-extrabold shadow-lg hover:shadow-xl transition-all duration-200 border-none focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 cursor-pointer transform hover:scale-105 active:scale-95"
+                            className="py-6 px-12 text-xl rounded-2xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-extrabold shadow-lg hover:shadow-xl transition-all duration-200 border-none focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 cursor-pointer transform hover:scale-105 active:scale-95"
                         >
                             {buttonText}
                         </Button>
