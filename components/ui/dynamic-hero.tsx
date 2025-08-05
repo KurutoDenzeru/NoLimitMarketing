@@ -78,52 +78,42 @@ const HeroSection = ({
         };
     }, []);
 
+    // Update drawArrow to use viewport coordinates
     const drawArrow = useCallback(() => {
-        if (!canvasRef.current || !targetRef.current || !ctxRef.current || !heroRef.current) return;
-
-        const targetEl = targetRef.current;
+        if (!canvasRef.current || !targetRef.current || !ctxRef.current) return;
         const ctx = ctxRef.current;
         const mouse = mousePosRef.current;
-        const heroRect = heroRef.current.getBoundingClientRect();
-
-        // Mouse position relative to hero section
-        const x0 = mouse.x;
-        const y0 = mouse.y;
-        // Draw arrow as long as mouse is inside hero section
-        if (x0 === null || y0 === null) return;
-        if (x0 < 0 || y0 < 0 || x0 > heroRect.width || y0 > heroRect.height) return;
-
-        // Target button center relative to hero section
-        const rect = targetEl.getBoundingClientRect();
-        const cx = rect.left - heroRect.left + rect.width / 2;
-        const cy = rect.top - heroRect.top + rect.height / 2;
-
-        const a = Math.atan2(cy - y0, cx - x0);
-        const x1 = cx - Math.cos(a) * (rect.width / 2 + 12);
-        const y1 = cy - Math.sin(a) * (rect.height / 2 + 12);
-
-        const midX = (x0 + x1) / 2;
-        const midY = (y0 + y1) / 2;
-        const offset = Math.min(200, Math.hypot(x1 - x0, y1 - y0) * 0.5);
-        const t = Math.max(-1, Math.min(1, (y0 - y1) / 200));
+        if (mouse.x === null || mouse.y === null) return;
+        // Target button center in viewport
+        const rect = targetRef.current.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        // Arrow coordinates relative to canvas (canvas covers viewport)
+        const startX = mouse.x;
+        const startY = mouse.y;
+        const endX = cx;
+        const endY = cy;
+        const a = Math.atan2(endY - startY, endX - startX);
+        const x1 = endX - Math.cos(a) * (rect.width / 2 + 12);
+        const y1 = endY - Math.sin(a) * (rect.height / 2 + 12);
+        const midX = (startX + x1) / 2;
+        const midY = (startY + y1) / 2;
+        const offset = Math.min(200, Math.hypot(x1 - startX, y1 - startY) * 0.5);
+        const t = Math.max(-1, Math.min(1, (startY - y1) / 200));
         const controlX = midX;
         const controlY = midY + offset * t;
-
-        const r = Math.sqrt((x1 - x0) ** 2 + (y1 - y0) ** 2);
+        const r = Math.sqrt((x1 - startX) ** 2 + (y1 - startY) ** 2);
         const opacity = Math.min(1.0, (r - Math.max(rect.width, rect.height) / 2) / 500);
-
         const arrowColor = resolvedCanvasColorsRef.current.strokeStyle;
         ctx.strokeStyle = `rgba(${arrowColor.r}, ${arrowColor.g}, ${arrowColor.b}, ${opacity})`;
         ctx.lineWidth = 2;
-
         ctx.save();
         ctx.beginPath();
-        ctx.moveTo(x0, y0);
+        ctx.moveTo(startX, startY);
         ctx.quadraticCurveTo(controlX, controlY, x1, y1);
         ctx.setLineDash([10, 5]);
         ctx.stroke();
         ctx.restore();
-
         // Draw arrowhead
         const angle = Math.atan2(y1 - controlY, x1 - controlX);
         const headLength = 10 * (ctx.lineWidth / 1.5);
@@ -141,50 +131,33 @@ const HeroSection = ({
         ctx.stroke();
     }, []);
 
+    // Track mouse position globally for both hero and jumbotron
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (!canvas || !targetRef.current || !heroRef.current) return;
+        if (!canvas || !targetRef.current) return;
         ctxRef.current = canvas.getContext("2d");
-        const ctx = ctxRef.current;
-        const heroNode = heroRef.current; // capture ref value
 
         const updateCanvasSize = () => {
-            const heroRect = heroNode!.getBoundingClientRect();
-            canvas.width = heroRect.width;
-            canvas.height = heroRect.height;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         };
+        window.addEventListener("resize", updateCanvasSize);
+        updateCanvasSize();
 
         function handleMouseMove(e: MouseEvent): void {
-            if (!heroNode) return;
-            const heroRect = heroNode.getBoundingClientRect();
-            const x = e.clientX - heroRect.left;
-            const y = e.clientY - heroRect.top;
-            // Track mouse position as long as it's inside hero section
-            if (x >= 0 && y >= 0 && x <= heroRect.width && y <= heroRect.height) {
-                mousePosRef.current = { x, y };
-                isMouseInsideRef.current = true;
-            } else {
-                mousePosRef.current = { x: null, y: null };
-                isMouseInsideRef.current = false;
-            }
+            mousePosRef.current = { x: e.clientX, y: e.clientY };
+            isMouseInsideRef.current = true;
         }
-
         function handleMouseLeave() {
             mousePosRef.current = { x: null, y: null };
             isMouseInsideRef.current = false;
         }
-
-        window.addEventListener("resize", updateCanvasSize);
-        updateCanvasSize();
-
-        if (heroNode) {
-            heroNode.addEventListener("mousemove", handleMouseMove);
-            heroNode.addEventListener("mouseleave", handleMouseLeave);
-        }
+        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mouseleave", handleMouseLeave);
 
         const animateLoop = () => {
-            if (ctx && canvas) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (ctxRef.current && canvas) {
+                ctxRef.current.clearRect(0, 0, canvas.width, canvas.height);
                 drawArrow();
             }
             animationFrameIdRef.current = requestAnimationFrame(animateLoop);
@@ -193,10 +166,8 @@ const HeroSection = ({
 
         return () => {
             window.removeEventListener("resize", updateCanvasSize);
-            if (heroNode) {
-                heroNode.removeEventListener("mousemove", handleMouseMove);
-                heroNode.removeEventListener("mouseleave", handleMouseLeave);
-            }
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("mouseleave", handleMouseLeave);
             if (animationFrameIdRef.current) {
                 cancelAnimationFrame(animationFrameIdRef.current);
             }
@@ -227,8 +198,9 @@ const HeroSection = ({
                         </div>
                     </main>
                 </div>
-                <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />
+                <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-50" />
             </div>
+            {/* Jumbotron */}
             <AnimatedContainer className="w-full py-10 lg:py-20">
                 <div className="max-w-8xl mx-auto px-4">
                     <div className="flex flex-col text-center bg-muted rounded-md p-4 lg:p-14 gap-8 items-center">
