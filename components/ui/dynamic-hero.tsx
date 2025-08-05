@@ -1,7 +1,8 @@
 "use client"
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Button } from "@/components/ui/button"
 import { AnimatedContainer } from '@/components/ui/animated-container';
+import { HeroAnalysisDialog } from "@/components/HeroAnalysisDialog";
 
 // Helper to parse 'rgb(r, g, b)' or 'rgba(r, g, b, a)' string to {r, g, b}
 interface RgbColor {
@@ -34,6 +35,7 @@ const HeroSection = ({
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
     const animationFrameIdRef = useRef<number | null>(null);
     const isMouseInsideRef = useRef(false);
+    const [isDialogOpen, setDialogOpen] = useState(false);
 
     const resolvedCanvasColorsRef = useRef({
         strokeStyle: { r: 128, g: 128, b: 128 }, // Default mid-gray
@@ -216,6 +218,7 @@ const HeroSection = ({
                             <Button
                                 ref={targetRef}
                                 className="py-6 px-12 text-xl rounded-2xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-extrabold shadow-lg hover:shadow-xl transition-all duration-200 border-none focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 cursor-pointer transform hover:scale-105 active:scale-95"
+                                onClick={() => setDialogOpen(true)}
                             >
                                 {buttonText}
                             </Button>
@@ -224,6 +227,7 @@ const HeroSection = ({
                 </div>
                 <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />
             </div>
+            <HeroAnalysisDialog isOpen={isDialogOpen} onOpenChange={setDialogOpen} />
         </AnimatedContainer>
     );
 };
