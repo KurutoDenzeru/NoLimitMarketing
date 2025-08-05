@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/ui/dynamic-hero"
 import { CTA } from "@/components/ui/call-to-action"
 import MostOutOfYourMarketing from "@/components/ui/MostOutOfYourMarketing"
 import { WhatMakesYourDifferent } from "@/components/WhatMakesYourDifferent"
+import { WorldMapDemo } from "@/components/EmailSubscription"
 
 export default function HomePage() {
   return (
@@ -21,6 +22,7 @@ export default function HomePage() {
       </div>
       <MostOutOfYourMarketing />
       <WhatMakesYourDifferent />
+      <WorldMapDemo />
       <Footer />
     </>
   )
