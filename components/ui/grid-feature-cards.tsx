@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface FeatureType {
 	title: string;
@@ -12,7 +12,13 @@ interface FeatureCardProps extends React.ComponentProps<'div'> {
 }
 
 export function FeatureCard({ feature, className, ...props }: FeatureCardProps) {
-	const p = genRandomPattern();
+	const [pattern, setPattern] = useState<number[][] | null>(null);
+
+	useEffect(() => {
+		setPattern(genRandomPattern());
+	}, []);
+
+	if (!pattern) return null; // Optionally use a skeleton or fallback here
 
 	return (
 		<div className={cn('relative overflow-hidden p-6', className)} {...props}>
@@ -23,7 +29,7 @@ export function FeatureCard({ feature, className, ...props }: FeatureCardProps) 
 						height={20}
 						x="-12"
 						y="4"
-						squares={p}
+						squares={pattern}
 						className="fill-foreground/5 stroke-foreground/25 absolute inset-0 h-full w-full mix-blend-overlay"
 					/>
 				</div>

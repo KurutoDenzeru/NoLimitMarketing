@@ -1,10 +1,11 @@
 import { PhoneCall } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AnimatedContainer } from '@/components/ui/animated-container';
 
 function CTA() {
   return (
-    <div className="w-full py-10 lg:py-20">
+    <AnimatedContainer className="w-full py-10 lg:py-20">
       <div className="max-w-8xl mx-auto px-4">
         <div className="flex flex-col text-center bg-muted rounded-md p-4 lg:p-14 gap-8 items-center">
           <div>
@@ -28,7 +29,7 @@ function CTA() {
           </div>
         </div>
       </div>
-    </div>
+    </AnimatedContainer>
   );
 }
 

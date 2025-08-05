@@ -11,7 +11,7 @@ export default function HomePage() {
       <div className="max-w-8xl mx-auto w-full">
         <Navbar />
       </div>
-      <div className="h-screen flex flex-col">
+      <div className="min-h-screen ">
         <HeroSection
           heading="More Growth. More Clients."
           tagline="Guaranteed!"

@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useCallback } from 'react';
 import { Button } from "@/components/ui/button"
+import { AnimatedContainer } from '@/components/ui/animated-container';
 
 // Helper to parse 'rgb(r, g, b)' or 'rgba(r, g, b, a)' string to {r, g, b}
 interface RgbColor {
@@ -75,7 +76,6 @@ const HeroSection = ({
 
     const drawArrow = useCallback(() => {
         if (!canvasRef.current || !targetRef.current || !ctxRef.current || !heroRef.current) return;
-        if (!isMouseInsideRef.current) return;
 
         const targetEl = targetRef.current;
         const ctx = ctxRef.current;
@@ -85,15 +85,9 @@ const HeroSection = ({
         // Mouse position relative to hero section
         const x0 = mouse.x;
         const y0 = mouse.y;
+        // Draw arrow as long as mouse is inside hero section
         if (x0 === null || y0 === null) return;
-
-        // Only draw if mouse is inside hero section
-        if (
-            x0 < 0 ||
-            y0 < 0 ||
-            x0 > heroRect.width ||
-            y0 > heroRect.height
-        ) return;
+        if (x0 < 0 || y0 < 0 || x0 > heroRect.width || y0 > heroRect.height) return;
 
         // Target button center relative to hero section
         const rect = targetEl.getBoundingClientRect();
@@ -161,7 +155,7 @@ const HeroSection = ({
             const heroRect = heroNode.getBoundingClientRect();
             const x = e.clientX - heroRect.left;
             const y = e.clientY - heroRect.top;
-            // Only track if inside hero
+            // Track mouse position as long as it's inside hero section
             if (x >= 0 && y >= 0 && x <= heroRect.width && y <= heroRect.height) {
                 mousePosRef.current = { x, y };
                 isMouseInsideRef.current = true;
@@ -206,29 +200,31 @@ const HeroSection = ({
     }, [drawArrow]);
 
     return (
-        <div ref={heroRef} className="bg-background text-foreground flex flex-col relative overflow-hidden">
-            <div className="max-w-8xl mx-auto w-full flex-grow flex flex-col">
-                <main className="flex-grow flex flex-col items-center justify-center my-12 sm:my-16 lg:my-24">
-                    <div className="flex flex-col items-center">
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center px-4">
-                            {heading}
-                        </h1>
-                        <p className="mt-3 block text-muted-foreground text-center text-lg sm:text-xl lg:text-2xl font-medium px-4 max-w-xl">
-                            {tagline}
-                        </p>
-                    </div>
-                    <div className="mt-8 flex justify-center">
-                        <Button
-                            ref={targetRef}
-                            className="py-6 px-12 text-xl rounded-2xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-extrabold shadow-lg hover:shadow-xl transition-all duration-200 border-none focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 cursor-pointer transform hover:scale-105 active:scale-95"
-                        >
-                            {buttonText}
-                        </Button>
-                    </div>
-                </main>
+        <AnimatedContainer className="bg-background text-foreground flex flex-col relative overflow-hidden">
+            <div ref={heroRef}>
+                <div className="max-w-8xl mx-auto w-full flex-grow flex flex-col">
+                    <main className="flex-grow flex flex-col items-center justify-center my-12 sm:my-16 lg:my-24">
+                        <div className="flex flex-col items-center">
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center px-4">
+                                {heading}
+                            </h1>
+                            <p className="mt-3 block text-muted-foreground text-center text-lg sm:text-xl lg:text-2xl font-medium px-4 max-w-xl">
+                                {tagline}
+                            </p>
+                        </div>
+                        <div className="mt-8 flex justify-center">
+                            <Button
+                                ref={targetRef}
+                                className="py-6 px-12 text-xl rounded-2xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-extrabold shadow-lg hover:shadow-xl transition-all duration-200 border-none focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 cursor-pointer transform hover:scale-105 active:scale-95"
+                            >
+                                {buttonText}
+                            </Button>
+                        </div>
+                    </main>
+                </div>
+                <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />
             </div>
-            <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />
-        </div>
+        </AnimatedContainer>
     );
 };
 

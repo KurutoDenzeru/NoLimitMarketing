@@ -23,7 +23,7 @@ const features = [
 
 export default function MostOutOfYourMarketing() {
 	return (
-		<section className="py-16 md:py-32">
+		<section className="pt-16 md:pb-32">
 			<div className="mx-auto w-full max-w-8xl space-y-8 px-4">
 				<AnimatedContainer className="mx-auto max-w-8xl text-center">
 					<h2 className="text-3xl font-bold tracking-wide text-balance md:text-4xl lg:text-5xl xl:font-extrabold">
