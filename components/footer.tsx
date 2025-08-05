@@ -9,7 +9,7 @@ interface FooterProps {
 export function Footer({ className }: FooterProps) {
     return (
         <footer className={`bg-neutral-900 text-neutral-200 pt-12 pb-6 px-4 md:px-8 ${className ?? ""}`}>
-            <div className="max-w-8xl mx-auto flex flex-col md:flex-row md:justify-between gap-8">
+            <div className="max-w-8xl px-6 mx-auto flex flex-col md:flex-row md:justify-between gap-8">
                 {/* Company Info */}
                 <div className="flex-1 min-w-[220px]">
                     <h3 className="font-bold text-lg mb-2">NoLimitMarketing</h3>
@@ -66,8 +66,8 @@ export function Footer({ className }: FooterProps) {
                     </div>
                 </div>
             </div>
-            <hr className="my-8 border-neutral-700" />
-            <div className="max-w-8xl mx-auto flex flex-col md:flex-row items-center justify-between text-sm text-neutral-400 gap-2">
+            <hr className="my-8 !max-w-8xl px-6 border-neutral-700" />
+            <div className="max-w-8xl px-6 mx-auto flex flex-col md:flex-row items-center justify-between text-sm text-neutral-400 gap-2">
                 <span>© 2025 NoLimitMarketing. All rights reserved.</span>
                 {/* <span>
                     Made with <span className="text-red-500">♥</span> for growing businesses
