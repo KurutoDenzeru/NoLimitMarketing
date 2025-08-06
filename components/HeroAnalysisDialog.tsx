@@ -69,12 +69,26 @@ function HeroAnalysisDialog({ isOpen, onOpenChange }: HeroAnalysisDialogProps) {
         return (hasSubmitted || touched[field]) && !form[field];
     }
 
-    function handleSubmit(e: React.FormEvent) {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         setHasSubmitted(true);
         const missing = requiredFields.filter(field => !form[field]);
         if (missing.length === 0) {
-            // Submit logic here
+            try {
+                const res = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(form),
+                });
+                const result = await res.json();
+                if (result.success) {
+                    console.log('Email has been sent! Message ID:', result.messageId);
+                } else {
+                    console.error('Email send failed:', result.error);
+                }
+            } catch (err) {
+                console.error('Error sending email:', err);
+            }
             onOpenChange(false);
         }
     }
